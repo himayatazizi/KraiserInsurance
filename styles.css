@@ -1,0 +1,74 @@
+/* styles.css */
+
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Doctor list styles */
+.doctor-list {
+    list-style: none;
+    padding: 0;
+}
+
+.doctor-list li {
+    margin: 10px 0;
+}
+
+/* Doctor profile styles */
+/* Apply styles to individual doctor profiles */
+#doctor-profile-1,
+#doctor-profile-2,
+#doctor-profile-3,
+#doctor-profile-4,
+#doctor-profile-5,
+#doctor-profile-6,
+#doctor-profile-7,
+#doctor-profile-8,
+#doctor-profile-9,
+#doctor-profile-10,
+#doctor-profile-11,
+#doctor-profile-12,
+#doctor-profile-13,
+#doctor-profile-14,
+#doctor-profile-15,
+#doctor-profile-16,
+#doctor-profile-17,
+#doctor-profile-18,
+#doctor-profile-19,
+#doctor-profile-20,
+#doctor-profile-21,
+#doctor-profile-22,
+#doctor-profile-23,
+#doctor-profile-24,
+#doctor-profile-25 {
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+}
+
+
+/* Appointment form styles */
+#appointment-form {
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+}
+
+/* Button styles */
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
