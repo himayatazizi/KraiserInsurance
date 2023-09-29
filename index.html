@@ -4,6 +4,10 @@
   <title>Multi-Page Form</title>
   <style>
     /* CSS styles for the form */
+    body {
+      font-family: sans-serif;
+    }
+    
     .form-page {
       display: none;
     }
@@ -15,84 +19,222 @@
     .form-buttons {
       margin-top: 20px;
     }
-  </style>
+    
+    .warning-popup {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      padding: 20px;
+      background-color: #f44336;
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    
+    .warning-popup .exit-button {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background-color: transparent;
+      color: white;
+      border: none;
+      font-size: 16px;
+    }
+    
+    /* Page-specific styles */
+    
+    /* Page 1 */
+    #page1 {
+      color: yellow;
+      background-color: blue;
+      text-align: right;
+    }
+    
+    /* Page 2 */
+    #page2 {
+      font-family: cursive;
+      color: green;
+      background-color: red;
+    }
+    
+    /* Page 3 */
+    #page3 {
+      font-family: Arial, sans-serif; /* Hard to read font */
+      text-align: left; /* Bottom left alignment */
+    }
+    
+    /* Page 4 */
+    #page4 {
+      font-family: sans-serif; /* Sans serif font */
+    }
+    
+    /* Buttons */
+    
+    .next-button,
+    .back-button {
+      background-color: transparent; /* Super flat design */
+      border: none; /* No physical arrow */
+      font-size: small; /* Small size */
+      
+      /* Slightly harder to read */
+      text-shadow:
+        -1px -1px white,
+        -1px 1px white,
+        1px -1px white,
+        1px 1px white;
+
+        cursor:pointer; 
+        outline:none; 
+        padding:.5em .75em; 
+        border-radius:.25em
+    }
+    
+    .back-button {
+      float: right; /* Right side */
+    }
+    
+    /* Hide browser default focus outline on buttons and form elements */
+    
+     button:focus,
+     input:focus,
+     textarea:focus,
+     select:focus {
+         outline:none
+     }
+
+     button::-moz-focus-inner,
+     input::-moz-focus-inner,
+     textarea::-moz-focus-inner,
+     select::-moz-focus-inner { 
+         border:none 
+     }
+
+     button::-moz-focus-inner { 
+         border:none 
+     }
+
+     input::-moz-focus-inner { 
+         border:none 
+     }
+
+     textarea::-moz-focus-inner { 
+         border:none 
+     }
+
+     select::-moz-focus-inner { 
+         border:none 
+     }
+</style>
 </head>
 <body>
-  <form id="multi-page-form">
-    <!-- Page 1: First and Last Name -->
-    <div class="form-page active" id="page1">
-      <label for="first-name">First Name:</label>
-      <input type="text" id="first-name" required>
-      
-      <label for="last-name">Last Name:</label>
-      <input type="text" id="last-name" required>
-      
-      <div class="form-buttons">
-        <button type="button" onclick="nextPage('page2')">Next</button>
-      </div>
-    </div>
-    
-    <!-- Page 2: Date of Birth and Email -->
-    <div class="form-page" id="page2">
-      <label for="date-of-birth">Date of Birth:</label>
-      <input type="date" id="date-of-birth" required>
-      
-      <label for="email">Email:</label>
-      <input type="email" id="email" required>
-      
-      <div class="form-buttons">
-        <button type="button" onclick="nextPage('page3')">Next</button>
-      </div>
-    </div>
-    
-    <!-- Page 3: Phone Number and Age -->
-    <div class="form-page" id="page3">
-      <label for="phone-number">Phone Number:</label>
-      <input type="tel" id="phone-number" required>
-      
-      <label for="age">Age:</label>
-      <input type="number" id="age" required>
-      
-      <div class="form-buttons">
-        <button type="button" onclick="nextPage('page4')">Next</button>
-      </div>
-    </div>
+<form id="multi-page-form">
+<!-- Page 1 -->
+<div class="form-page active" id="page1">
+<label for="first-name">First Name:</label>
+<input type="text" id="first-name" required>
 
-    <!-- Page 4: Rating -->
-    <div class="form-page" id="page4">
-      <p>Please rate your experience (1-5 stars):</p>
+<label for="last-name">Last Name:</label>
+<input type="text" id="last-name" required>
 
-      <!-- You can replace the radio buttons with any rating UI of your choice -->
-      <input type="radio" name="rating" value="1"> 1 Star
-      <input type="radio" name="rating" value="2"> 2 Stars
-      <input type="radio" name="rating" value="3"> 3 Stars
-      <input type="radio" name="rating" value="4"> 4 Stars
-      <input type="radio" name="rating" value="5"> 5 Stars
-      
-      <!-- You can add additional form fields or customize the UI as needed -->
-      
-      <!-- Submit button -->
-      <div class="form-buttons">
-        <button type="submit">Submit</button>
-      </div>
+<div class="form-buttons">
+<button type="button" onclick="nextPage('page2')" class="next-button">Next</button>
+</div>
+</div>
+
+<!-- Page 2 -->
+<div class="form-page" id="page2">
+<label for="date-of-birth">Date of Birth:</label>
+<input type="text" id="date-of-birth" required placeholder="(dd/mm/yyyy)">
+
+<label for="email">Email:</label>
+<input type="email" id="email" required>
+
+<div class="form-buttons">
+<button type="button" onclick="nextPage('page3')" class="next-button">Next</button>
+<button type="button" onclick="prevPage('page1')" class="back-button">Back</button>
+</div>
+</div>
+
+<!-- Page 3 -->
+<div class="form-page" id="page3">
+<label for="phone-number">Phone Number:</label>
+<input type="tel" id="phone-number" required>
+
+<label for="age">Age:</label>
+<input type="number" id="age" required>
+
+<div class="form-buttons">
+<button type="button" onclick="nextPage('page4')" class="next-button">Next</button>
+<button type="button" onclick="prevPage('page2')" class="back-button">Back</button>
+</div>
+</div>
+
+<!-- Page 4 -->
+<div class="form-page" id="page4">
+    <p>Please rate your experience (1-5 stars):</p>
+  
+    <!-- You can replace the radio buttons with any rating UI of your choice -->
+    <input type="radio" name="rating" value="1"> 1 Star
+    <input type="radio" name="rating" value="2"> 2 Stars
+    <input type="radio" name="rating" value="3"> 3 Stars
+    <input type="radio" name="rating" value="4"> 4 Stars
+    <input type="radio" name="rating" value="5"> 5 Stars
+  
+    <!-- You can add additional form fields or customize the UI as needed -->
+  
+    <!-- Submit button -->
+    <div class="form-buttons">
+      <button type="submit">Submit</button>
     </div>
-
-  </form>
-
-  <!-- JavaScript to handle page navigation -->
+  </div>
+  
+  <!-- JavaScript to handle page navigation and pop-up message -->
   <script>
     function nextPage(pageId) {
       // Hide the current page
       var currentPage = document.querySelector('.form-page.active');
       currentPage.classList.remove('active');
-      
+  
       // Show the next page
       var nextPage = document.getElementById(pageId);
       nextPage.classList.add('active');
+  
+      // Show the success pop-up message
+      showSuccessPopup();
     }
+  
+    function prevPage(pageId) {
+      // Hide the current page
+      var currentPage = document.querySelector('.form-page.active');
+      currentPage.classList.remove('active');
+  
+      // Show the previous page
+      var prevPage = document.getElementById(pageId);
+      prevPage.classList.add('active');
+  
+      // Show the success pop-up message
+      showSuccessPopup();
+    }
+  
+    // Function to show the success pop-up message
+    function showSuccessPopup() {
+      var popup = document.createElement('div');
+      popup.className = 'warning-popup';
+      popup.innerHTML = 'Responses submitted successfully!';
+      
+      var exitButton = document.createElement('button');
+      exitButton.className = 'exit-button';
+      exitButton.textContent = 'Exit';
+      exitButton.onclick = function () {
+        popup.style.display = 'none';
+      };
+  
+      popup.appendChild(exitButton);
+      document.body.appendChild(popup);
+  }
   </script>
-
+  
 </body>
 </html>
-
-
