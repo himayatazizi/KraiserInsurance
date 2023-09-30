@@ -50,6 +50,7 @@
       color: yellow;
       background-color: blue;
       text-align: right;
+      background-size: 200%;
     }
     
     /* Page 2 */
@@ -61,13 +62,15 @@
     
     /* Page 3 */
     #page3 {
-      font-family: Arial, sans-serif; /* Hard to read font */
-      text-align: left; /* Bottom left alignment */
+      font-family: Arial, sans-serif; 
+      text-align: right; 
+      color: rgb(255, 0, 0);
+      background-color: rgb(27, 255, 27);
     }
     
     /* Page 4 */
     #page4 {
-      font-family: sans-serif; /* Sans serif font */
+      font-family: cursive;
     }
     
     /* Buttons */
@@ -226,12 +229,10 @@
       if (!userInteractionEnabled) {
         return; // Prevent navigation while popup is active
       }
-      
-      // Hide the current page
+   
       var currentPage = document.querySelector('.form-page.active');
       currentPage.classList.remove('active');
   
-      // Show the previous page
       var prevPage = document.getElementById(pageId);
       prevPage.classList.add('active');
   
