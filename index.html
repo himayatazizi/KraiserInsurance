@@ -26,7 +26,7 @@
       left: 20px;
       padding: 20px;
       background-color: #f44336;
-      color: white;
+      color: rgb(78, 45, 45);
       font-size: 24px;
       font-weight: bold;
       border-radius: 5px;
@@ -50,7 +50,6 @@
       color: yellow;
       background-color: blue;
       text-align: right;
-      background-size: 200%;
     }
     
     /* Page 2 */
@@ -186,7 +185,7 @@
     <input type="text" id="rating-input" placeholder="Type 'one,' 'two,' 'three,' 'four,' or 'five'">
     
     <!-- Error message for invalid input -->
-    <div id="rating-error" class="warning-popup" style="display: none;">
+    <div id="rating-error" class="warning-popup" style="display: none; text-align: right;">
       Please type 'one,' 'two,' 'three,' 'four,' or 'five' in lowercase.
       <button type="button" class="exit-button" onclick="hideRatingError()">Exit</button>
     </div>
@@ -242,25 +241,32 @@
       // Disable user interaction
       userInteractionEnabled = false;
     }
-  
+    
     // Function to show the success pop-up message
     function showSuccessPopup() {
-      var popup = document.createElement('div');
-      popup.className = 'warning-popup';
-      popup.innerHTML = 'Responses submitted successfully!';
-  
-      var exitButton = document.createElement('button');
-      exitButton.className = 'exit-button';
-      exitButton.textContent = 'Exit';
-      exitButton.onclick = function () {
+    var popup = document.createElement('div');
+    popup.className = 'warning-popup';
+    popup.innerHTML = 'Responses submitted successfully!';
+
+    var exitButton = document.createElement('button');
+    exitButton.className = 'exit-button';
+    exitButton.textContent = 'X';
+    exitButton.onclick = function () {
         popup.style.display = 'none';
         // Re-enable user interaction
         userInteractionEnabled = true;
-      };
-  
-      popup.appendChild(exitButton);
-      document.body.appendChild(popup);
+    };
+
+    // Add CSS style for centering
+    popup.style.position = 'fixed';
+    popup.style.top = '50%';
+    popup.style.left = '50%';
+    popup.style.transform = 'translate(-50%, -50%)';
+
+    popup.appendChild(exitButton);
+    document.body.appendChild(popup);
     }
+
   
     // Function to validate the rating input
     function validateRating() {
