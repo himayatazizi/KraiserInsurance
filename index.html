@@ -131,45 +131,49 @@
 <body>
 <form id="multi-page-form">
 <!-- Page 1 -->
-<div class="form-page active" id="page1">
-<label for="first-name">First Name:</label>
-<input type="text" id="first-name" required>
-
-<label for="last-name">Last Name:</label>
-<input type="text" id="last-name" required>
-
-<div class="form-buttons">
-<button type="button" onclick="nextPage('page2')" class="next-button">Next</button>
-</div>
-</div>
+<div class="form-page active" id="page1" style="background-color: blue; color: yellow;">
+    <h1><strong>Hi! Thank you for being a dedicated customer at Kraiser, where we value your time, health, and care.</strong></h1>
+    <p><strong>Please leave your information and a review so we can better improve your experience for next time!</strong></p>
+  
+    <label for="first-name"><strong>First Name:</strong></label>
+    <input type="text" id="first-name" required>
+  
+    <label for="last-name"><strong>Last Name:</strong></label>
+    <input type="text" id="last-name" required>
+  
+    <div class="form-buttons">
+      <button type="button" onclick="nextPage('page2')" class="next-button">Next</button>
+    </div>
+  </div>
+  
 
 <!-- Page 2 -->
 <div class="form-page" id="page2">
-<label for="date-of-birth">Date of Birth:</label>
-<input type="text" id="date-of-birth" required placeholder="(dd/mm/yyyy)">
+    <label for="date-of-birth">Date of Birth:</label>
+    <input type="text" id="date-of-birth" required placeholder="(dd/mm/yyyy)">
 
-<label for="email">Email:</label>
-<input type="email" id="email" required>
+    <label for="email">Email:</label>
+    <input type="email" id="email" required>
 
-<div class="form-buttons">
-<button type="button" onclick="nextPage('page3')" class="next-button">Next</button>
-<button type="button" onclick="prevPage('page1')" class="back-button">Back</button>
-</div>
+    <div class="form-buttons">
+        <button type="button" onclick="nextPage('page3')" class="next-button">Next</button>
+        <button type="button" onclick="prevPage('page1')" class="back-button">Back</button>
+    </div>
 </div>
 
 <!-- Page 3 -->
 <div class="form-page" id="page3">
-<label for="phone-number">Phone Number:</label>
-<input type="tel" id="phone-number" required>
-
-<label for="age">Age:</label>
-<input type="number" id="age" required>
-
-<div class="form-buttons">
-<button type="button" onclick="nextPage('page4')" class="next-button">Next</button>
-<button type="button" onclick="prevPage('page2')" class="back-button">Back</button>
-</div>
-</div>
+    <label for="phone-number">Phone Number:</label>
+    <input type="tel" id="phone-number" required>
+  
+    <label for="age">Age:</label>
+    <input type="number" id="age" required>
+  
+    <div class="form-buttons">
+      <button type="button" onclick="nextPage('page4')" class="next-button">Next</button>
+      <button type="button" onclick="prevPage('page2')" class="back-button">Back</button>
+    </div>
+  </div>  
 
 <!-- Page 4 -->
 <div class="form-page" id="page4">
