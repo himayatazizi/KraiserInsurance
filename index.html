@@ -177,26 +177,36 @@
 
 <!-- Page 4 -->
 <div class="form-page" id="page4">
-    <p>Please rate your experience (1-5 stars):</p>
+    <label>Please rate your experience (1-5 stars):</label>
   
     <!-- You can replace the radio buttons with any rating UI of your choice -->
-    <input type="radio" name="rating" value="1"> 1 Star
-    <input type="radio" name="rating" value="2"> 2 Stars
-    <input type="radio" name="rating" value="3"> 3 Stars
-    <input type="radio" name="rating" value="4"> 4 Stars
-    <input type="radio" name="rating" value="5"> 5 Stars
-  
+    <input type="text" id="rating-input" placeholder="Type 'one,' 'two,' 'three,' 'four,' or 'five'">
+    
+    <!-- Error message for invalid input -->
+    <div id="rating-error" class="warning-popup" style="display: none;">
+      Please type 'one,' 'two,' 'three,' 'four,' or 'five' in lowercase.
+      <button type="button" class="exit-button" onclick="hideRatingError()">Exit</button>
+    </div>
+    
     <!-- You can add additional form fields or customize the UI as needed -->
-  
+    
     <!-- Submit button -->
     <div class="form-buttons">
-      <button type="submit">Submit</button>
+      <button type="button" onclick="validateRating()" class="next-button">Submit</button>
     </div>
   </div>
   
-  <!-- JavaScript to handle page navigation and pop-up message -->
-  <script>
+
+<!-- JavaScript to handle page navigation and pop-up message -->
+<script>
+    // Flag to control user interaction
+    var userInteractionEnabled = true;
+  
     function nextPage(pageId) {
+      if (!userInteractionEnabled) {
+        return; // Prevent navigation while popup is active
+      }
+      
       // Hide the current page
       var currentPage = document.querySelector('.form-page.active');
       currentPage.classList.remove('active');
@@ -207,9 +217,16 @@
   
       // Show the success pop-up message
       showSuccessPopup();
+      
+      // Disable user interaction
+      userInteractionEnabled = false;
     }
   
     function prevPage(pageId) {
+      if (!userInteractionEnabled) {
+        return; // Prevent navigation while popup is active
+      }
+      
       // Hide the current page
       var currentPage = document.querySelector('.form-page.active');
       currentPage.classList.remove('active');
@@ -220,6 +237,9 @@
   
       // Show the success pop-up message
       showSuccessPopup();
+      
+      // Disable user interaction
+      userInteractionEnabled = false;
     }
   
     // Function to show the success pop-up message
@@ -227,18 +247,48 @@
       var popup = document.createElement('div');
       popup.className = 'warning-popup';
       popup.innerHTML = 'Responses submitted successfully!';
-      
+  
       var exitButton = document.createElement('button');
       exitButton.className = 'exit-button';
       exitButton.textContent = 'Exit';
       exitButton.onclick = function () {
         popup.style.display = 'none';
+        // Re-enable user interaction
+        userInteractionEnabled = true;
       };
   
       popup.appendChild(exitButton);
       document.body.appendChild(popup);
-  }
-  </script>
+    }
+  
+    // Function to validate the rating input
+    function validateRating() {
+      var ratingInput = document.getElementById('rating-input');
+      var ratingError = document.getElementById('rating-error');
+  
+      // Check if the input is valid (one, two, three, four, or five)
+      var validRatings = ['one', 'two', 'three', 'four', 'five'];
+      var userInput = ratingInput.value.trim().toLowerCase();
+  
+      if (validRatings.includes(userInput)) {
+        // Input is valid, continue to the next page
+        nextPage('page1');
+      } else {
+        // Show the error message and disable user interaction
+        ratingError.style.display = 'block';
+        userInteractionEnabled = false;
+      }
+    }
+  
+    // Function to hide the rating error message
+    function hideRatingError() {
+      var ratingError = document.getElementById('rating-error');
+      ratingError.style.display = 'none';
+  
+      // Re-enable user interaction
+      userInteractionEnabled = true;
+    }
+  </script>  
   
 </body>
 </html>
